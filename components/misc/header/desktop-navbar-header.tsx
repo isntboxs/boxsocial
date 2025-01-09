@@ -2,7 +2,7 @@ import { headers } from "next/headers"
 import Link from "next/link"
 
 import { auth } from "@/auth"
-import { HomeIcon } from "lucide-react"
+import { BellIcon } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { ToggleThemeMode } from "@/components/misc/toggle-theme-mode"
@@ -18,27 +18,27 @@ export const DesktopNavbarHeader = async () => {
     <div className="hidden items-center space-x-4 md:flex">
       <ToggleThemeMode />
 
-      <Button
-        variant="ghost"
-        size="default"
-        type="button"
-        className="flex items-center gap-2"
-        asChild
-      >
-        <Link href="/">
-          <HomeIcon className="h-4 w-4" />
-          <span className="hidden lg:inline">Home</span>
-        </Link>
-      </Button>
-
       {session ? (
-        <UserButtonDesktopNavbar
-          session={JSON.parse(JSON.stringify(session))}
-        />
+        <>
+          <Button
+            variant="ghost"
+            size="sm"
+            className="flex items-center gap-2"
+            asChild
+          >
+            <Link href="/notifications">
+              <BellIcon className="h-4 w-4" />
+              <span className="hidden lg:inline">Notifications</span>
+            </Link>
+          </Button>
+          <UserButtonDesktopNavbar
+            session={JSON.parse(JSON.stringify(session))}
+          />
+        </>
       ) : (
         <Button
-          variant="ghost"
-          size="default"
+          variant="default"
+          size="sm"
           type="button"
           className="flex items-center gap-2"
           asChild
